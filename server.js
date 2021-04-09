@@ -1,28 +1,26 @@
 const http = require('http'),
-    url = require('url'),
-    fs = require('fs');
-
-// Creates server that listens for requests on localhost port 8080
+    fs = require('fs'),
+    url = require('url');
+//server created on http://localhost:8080/
 http.createServer((request, response) => {
     let addr = request.url,
         q = url.parse(addr, true),
         filePath = '';
-
-    // Log requests in text file
+    //logs requests to log.txt
     fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
         if (err) {
             console.log(err);
+        } else {
+            console.log('Added to log.');
         }
     });
-
-    // Choosing HTML file based on URL
+    //checks for the pages based on the URL
     if (q.pathname.includes('documentation')) {
         filePath = (__dirname + '/documentation.html');
     } else {
         filePath = 'index.html';
     }
-
-    // Delivering the chosen HTML file to the user
+    //serves the page based on the URL
     fs.readFile(filePath, (err, data) => {
         if (err) {
             throw err;
@@ -35,3 +33,4 @@ http.createServer((request, response) => {
     });
 
 }).listen(8080);
+console.log('My test server is running on Port 8080.');
