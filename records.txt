@@ -1,0 +1,221 @@
+var movie1 = {
+  Title: "Silence of the Lambs",
+  Description: "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
+  Genre: {
+    Name: "Thriller",
+    Description: "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+  },
+  Director: {
+    Name: "Jonathan Demme",
+    Bio: "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+    Birth: "1944",
+    Death: "2017"
+  },
+  ImagePath: "https://resizing.flixster.com/EypAJzN21QGgpl_HwES6wVj4tBI=/206x305/v2/https://flxt.tmsimg.com/assets/p13013_p_v10_aa.jpg",
+  Featured: true
+}
+
+db.movies.insertOne(movie1)
+
+var movie2 = {
+  Title: "Europa Report",
+  Description: "An international crew of astronauts undertakes a privately funded mission to search for life on Jupiter's fourth largest moon",
+  Genre: {
+    Name: "Sci-Fi",
+    Description: "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."
+  },
+  Director: {
+    Name: "Sebastián Cordero",
+    Bio: "ebastián Cordero was born on May 23, 1972 in Quito, Ecuador.",
+    Birth: "1972",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BMjA2OTk5ODkxMl5BMl5BanBnXkFtZTcwODc4MDk0OQ@@._V1_UY268_CR3,0,182,268_AL_.jpg",
+  Featured: true
+}
+
+db.movies.insertOne(movie2)
+
+var movie4 = {
+  Title: "Daybreakers",
+  Description: "A spaceship is discovered under three hundred years' worth of coral growth at the bottom of the ocean",
+  Genre: {
+    Name: "Action",
+    Description: "Action film is a film genre in which the protagonist or protagonists are thrust into a series of events that typically include violence, extended fighting"
+  },
+  Director: {
+    Name: "Michael Spierig",
+    Bio: "Michael Spierig was born in Germany. He is a director and writer, known for ",
+    Birth: "1940",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BNzg3NDYyMDU4Nl5BMl5BanBnXkFtZTcwODA5NzA5Mg@@._V1_UX182_CR0,0,182,268_AL_.jpg",
+  Featured: true
+}
+
+db.movies.insertOne(movie4)
+
+var movie5 = {
+  Title: "Sphere",
+  Description: "In the year 2019, a plague has transformed almost every human into vampires. Faced with a dwindling blood supply, ",
+  Genre: {
+    Name: "Action",
+    Description: "Action film is a film genre in which the protagonist or protagonists are thrust into a series of events that typically include violence, extended fighting"
+  },
+  Director: {
+    Name: "Barry Levinson",
+    Bio: "Barry Lee Levinson was born in Baltimore, Maryland, to Violet (Krichinsky) and Irvin Levinson",
+    Birth: "1942",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BNzg3NDYyMDU4Nl5BMl5BanBnXkFtZTcwODA5NzA5Mg@@._V1_UX182_CR0,0,182,268_AL_.jpg",
+  Featured: true
+}
+
+db.movies.insertOne(movie5)
+
+var movie6 = {
+  Title: "Pitch Black",
+  Description: "A commercial transport ship and its crew are marooned on a planet full of bloodthirsty creatures that only come out to feast at night.",
+  Genre: {
+    Name: "Action",
+    Description: "Action film is a film genre in which the protagonist or protagonists are thrust into a series of events that typically include violence, extended fighting"
+  },
+  Director: {
+    Name: "David Twohy",
+    Bio: "As both writer and director, David Twohy has contributed much to the film world, helping to elevate movies",
+    Birth: "1955",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BNTNmYzE1OWYtZDdjNC00OTdhLTg1YjUtYWJlZTVkMzkzNmVkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg",
+  Featured: false
+}
+
+db.movies.insertOne(movie6)
+
+var movie7 = {
+  Title: "Event Horizon",
+  Description: "A rescue crew investigates a spaceship that disappeared into a black hole and has now returned",
+  Genre: {
+    Name: "Horror",
+    Description: "A horror film is one that seeks to elicit fear in its audience for entertainment purposes. Horror"
+  },
+  Director: {
+    Name: "Paul Anderson",
+    Bio: "Paul Anderson gained a fair bit of notoriety in his native England when he directed the ultra violent Shopping ",
+    Birth: "1965",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BNTNmYzE1OWYtZDdjNC00OTdhLTg1YjUtYWJlZTVkMzkzNmVkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg",
+  Featured: false
+}
+
+db.movies.insertOne(movie7)
+
+
+var movie8 = {
+  Title: "Pandorum",
+  Description: "Two crew members of a spaceship wake up from hypersleep to discover that all their colleagues are missing.",
+  Genre: {
+    Name: "Horror",
+    Description: "A horror film is one that seeks to elicit fear in its audience for entertainment purposes. Horror"
+  },
+  Director: {
+    Name: "Christian Alvart",
+    Bio: "Christian Alvart was born in 1974 near Frankfurt, Germany. His strict Christian background frowned upon films",
+    Birth: "1975",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BNDQxNjc5NTMxNl5BMl5BanBnXkFtZTcwNjg2NDE4Mg@@._V1_UX182_CR0,0,182,268_AL_.jpg",
+  Featured: true
+}
+
+db.movies.insertOne(movie8)
+
+var movie10 = {
+  Title: "Caprica",
+  Description: "Two families the Graystones and the Adamas live together on a peaceful planet known as Caprica",
+  Genre: {
+    Name: "Scfi",
+    Description: "speculative fiction that typically deals with imaginative and futuristic concepts such as advanced science and technology space"
+  },
+  Director: {
+    Name: "Remi Aubuchon",
+    Bio: "Remi Aubuchon most recently served as showrunner on the second season of USAs Falling Water.",
+    Birth: "1953",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BMjAxMjM4NDQyMV5BMl5BanBnXkFtZTcwMjEyNDYzMg@@._V1_UY268_CR6,0,182,268_AL_.jpg",
+  Featured: false
+}
+
+db.movies.insertOne(movie10)
+
+var movie9 = {
+  Title: "Caprica",
+  Description: "Two families, the Graystones and the Adamas, live together on a peaceful planet known as Caprica",
+  Genre: {
+    Name: "Scfi",
+    Description: "speculative fiction that typically deals with imaginative and futuristic concepts such as advanced science and technology space"
+  },
+  Director: {
+    Name: "Remi Aubuchon",
+    Bio: "Remi Aubuchon most recently served as showrunner on the second season of USAs "Falling Water.",
+    Birth: "1953",
+    Death: "2050"
+  },
+  ImagePath: "https://m.media-amazon.com/images/M/MV5BMjAxMjM4NDQyMV5BMl5BanBnXkFtZTcwMjEyNDYzMg@@._V1_UY268_CR6,0,182,268_AL_.jpg",
+  Featured: true
+}
+
+db.movies.insertOne(movie9)
+
+var user3= {
+    Username: "test3",
+    Password: "test3",
+    Email: "test3@email.com",
+    FavoriteMovies: [],
+}
+
+db.users.insertOne(user3)
+
+db.movies.update(
+  { _id: ObjectId("6089dfd036b8aff5b5519635") },
+  { $set: { Description: " UPDATEE A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer." } }
+)
+
+
+
+db.users.update(
+  { Username: "test1" },
+  { $push: { FavoriteMovies: ObjectId("608c8810030c13de5d38d257") } }
+)
+
+db.users.update(
+  { Username: "test1" },
+  { $pull: { FavoriteMovies: ObjectId("6089dfd036b8aff5b5519635") } }
+)
+
+
+
+db.movies.find({"Genre.Name":"Thriller"})
+
+
+
+db.movies.find( { $and: [ { "Genre.Name":"Thriller" }, { "Director.Name": "Jonathan Demme" } ] } )
+
+
+
+mongoexport -d myFlixDB -c movies -o movies.json
+mongoexport -d myFlixDB -c movies -o movoes.json
+
+https://resizing.flixster.com/EypAJzN21QGgpl_HwES6wVj4tBI=/206x305/v2/https://flxt.tmsimg.com/assets/p13013_p_v10_aa.jpg
+
+
+
+{
+    "Username" : "test6Updated", 
+    "Password" : "test6",
+    "Email" : "NewTest6@email.com",
+    "Birthday" : "01/01/2000" 
+}

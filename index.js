@@ -1,11 +1,13 @@
+const { check, validationResult } = require('express-validator');
+
 const path = require('path');
 const express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser');
 
 const app = express();
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 
 const mongoose = require('mongoose');
 const Models = require('./models.js');
@@ -22,10 +24,16 @@ require('./passport');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
+
+mongoose.connect('mongodb+srv://phil:phil@cluster0.gdhqw.mongodb.net/myFlixDB?retryWrites=true&w=majority',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
 
 // mongoose.connect(process.env.CONNECTION_URI, {
 //     useNewUrlParser: true,
@@ -122,49 +130,65 @@ app.get(
     }
 );
 
-//Create a new user without using authentication
-app.post(
-    '/users',
-    //Validation logic
-    (req, res) => {
+//Create a new user with password hashing
+app.post('/users',
+    // Validation logic here for request
+    //you can either use a chain of methods like .not().isEmpty()
+    //which means "opposite of isEmpty" in plain english "is not empty"
+    //or use .isLength({min: 5}) which means
+    //minimum value of 5 characters are only allowed
+    [
+        check('Username', 'Username is required').isLength({ min: 5 }),
+        check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+        check('Password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email does not appear to be valid').isEmail()
+    ], (req, res) => {
 
-        Users.findOne({ Username: req.body.Username })
-            .then(user => {
+        // check the validation object for errors
+        let errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+
+        let hashedPassword = Users.hashPassword(req.body.Password);
+        Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+            .then((user) => {
                 if (user) {
-                    return res.status(400).send(req.body.Username + ' already Exists');
+                    //If the user is found, send a response that it already exists
+                    return res.status(400).send(req.body.Username + ' already exists');
                 } else {
-                    Users.create({
-                        Username: req.body.Username,
-                        Password: req.body.Password,
-                        Email: req.body.Email,
-                        Birthday: req.body.Birthday
-                    })
-                        .then(user => {
-                            res.status(201).json(user);
+                    Users
+                        .create({
+                            Username: req.body.Username,
+                            Password: hashedPassword,
+                            Email: req.body.Email,
+                            Birthday: req.body.Birthday
                         })
-                        .catch(error => {
+                        .then((user) => { res.status(201).json(user) })
+                        .catch((error) => {
                             console.error(error);
                             res.status(500).send('Error: ' + error);
                         });
                 }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 res.status(500).send('Error: ' + error);
             });
-    }
-);
+    });
 
 //Update a user's details using authentication
 app.put(
     '/users/:Username', passport.authenticate('jwt', { session: false }),
     (req, res) => {
+        let hashedPassword = Users.hashPassword(req.body.Password);
         Users.findOneAndUpdate(
             { Username: req.params.Username },
             {
                 $set: {
                     Username: req.body.Username,
-                    Password: req.body.Password,
+                    Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday
                 }
