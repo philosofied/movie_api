@@ -35,6 +35,7 @@ const Users = Models.User;
 //         useUnifiedTopology: true
 //     });
 
+// using heroku env variable. test completed successfully with postman - was able to post new user
 mongoose.connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
