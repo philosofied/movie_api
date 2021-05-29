@@ -48,14 +48,25 @@ app.get('/', (req, res) => {
 });
 
 //Get list of movies with authentication
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+// app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+//     Movies.find()
+//         .then((movies) => {
+//             res.status(201).json(movies);
+//         })
+//         .catch((error) => {
+//             console.error(error);
+//             res.status(500).send('Error: ' + error);
+//         });
+// });
+//removed passport auth for testing 3.4
+app.get("/movies", function(req, res) {
     Movies.find()
-        .then((movies) => {
+        .then(function(movies) {
             res.status(201).json(movies);
         })
-        .catch((error) => {
+        .catch(function(error) {
             console.error(error);
-            res.status(500).send('Error: ' + error);
+            res.status(500).send("Error: " + error);
         });
 });
 
@@ -184,17 +195,14 @@ app.put(
     '/users/:Username', passport.authenticate('jwt', { session: false }),
     (req, res) => {
         let hashedPassword = Users.hashPassword(req.body.Password);
-        Users.findOneAndUpdate(
-            { Username: req.params.Username },
-            {
+        Users.findOneAndUpdate({ Username: req.params.Username }, {
                 $set: {
                     Username: req.body.Username,
                     Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday
                 }
-            },
-            { new: true },
+            }, { new: true },
             (err, updatedUser) => {
                 if (err) {
                     console.error(err);
@@ -211,12 +219,9 @@ app.put(
 app.post(
     '/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        Users.findOneAndUpdate(
-            { Username: req.params.Username },
-            {
+        Users.findOneAndUpdate({ Username: req.params.Username }, {
                 $push: { FavoriteMovies: req.params.MovieID }
-            },
-            { new: true },
+            }, { new: true },
             (err, updatedUser) => {
                 if (err) {
                     console.error(err);
@@ -233,10 +238,7 @@ app.post(
 app.delete(
     '/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        Users.findOneAndUpdate(
-            { Username: req.params.Username },
-            { $pull: { FavoriteMovies: req.params.MovieID } },
-            { new: true },
+        Users.findOneAndUpdate({ Username: req.params.Username }, { $pull: { FavoriteMovies: req.params.MovieID } }, { new: true },
             (err, updatedUser) => {
                 if (err) {
                     console.error(err);
